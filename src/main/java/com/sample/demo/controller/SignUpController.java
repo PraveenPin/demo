@@ -61,6 +61,12 @@ public class SignUpController {
         System.out.println("BEFORE RESPONSE OF EMPLOYEE LEAVE FORM ");
         return leaveFromImpelementaion.getLeaveEmpData(empIdStatus.getEmp_id(),empIdStatus.getStatus());
     }
+    @RequestMapping(value="/getLeavesTaken/{emp_id}",method = RequestMethod.GET)
+    public LeavesCount getLeavesTaken(@PathVariable Integer emp_id){
+        System.out.println("BEFORE RESPONSE OF LEAVES COUNT");
+        return leaveFromImpelementaion.getLeavesCount(emp_id);
+    }
+
     @RequestMapping(value="/getLearnDevForms/{manager_id}",method = RequestMethod.GET)
     public List<LearnDev> getLDForms(@PathVariable Integer manager_id){
         System.out.println("BEFORE RESPONSE OF MANAGER LD FORMS OF ALL EMPS ");
@@ -70,6 +76,16 @@ public class SignUpController {
     public LearnDev getLDEmpForm(@PathVariable Integer emp_id){
         System.out.println("BEFORE RESPONSE OF EMP LD FORM ");
         return learnDevImplementation.getLearnDetails(emp_id);
+    }
+    @RequestMapping(value="/getAllEmpGoalForms",method = RequestMethod.POST)
+    public List<Goal> getAllEmpGoalForms(@RequestBody ManIdStatus manIdStatus){
+        System.out.println("BEFORE RESPONSE OF ALL EMP GOAL FORMS TO MANAGER ");
+        return goalPerformanceImplementation.getGoalForms(manIdStatus);
+    }
+    @RequestMapping(value = "/getEmpGoalForm",method = RequestMethod.POST)
+    public Goal getEmpGoalForm(@RequestBody EmpIdStatus empIdStatus){
+        System.out.println("BEFORE RESPONSE OF EMP GOAL FORM TO EMPLOYEE ");
+        return goalPerformanceImplementation.getGoalEmpForm(empIdStatus);
     }
 //VACHINDAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 }

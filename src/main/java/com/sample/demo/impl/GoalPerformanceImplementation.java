@@ -1,8 +1,11 @@
 package com.sample.demo.impl;
 
+import com.sample.demo.model.EmpIdStatus;
 import com.sample.demo.model.Goal;
+import com.sample.demo.model.ManIdStatus;
 import com.sample.demo.repository.GoalPerformance;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -22,8 +25,18 @@ public class GoalPerformanceImplementation implements GoalPerformance {
         System.out.println("PERFORMANCE ADDED IN THE DATABASE");
     }
 
-//    @Override
-//    public List<Goal> getGoalForms(Integer emp_id) {
-//        return null;
-//    }
+    @Override
+    public List<Goal> getGoalForms(ManIdStatus manIdStatus) {
+        String sql="select * from goal_performance where status=? and emp_id in (select emp_id from master where manager_id=?)";
+        System.out.println("BEFORE GETTING ALL EMP GOAL FORMS FROM DATABASE FOR MANAGER");
+        return jdbcTemplate.query(sql,new Object[]{manIdStatus.getStatus(),manIdStatus.getManager_id()},new BeanPropertyRowMapper<>(Goal.class));
+    }
+
+    @Override
+    public Goal getGoalEmpForm(EmpIdStatus empIdStatus) {
+        String sql = "select * from goal_performance where emp_id=? and status=?";
+        System.out.println("BEFORE GETTING  EMP GOAL FORM FROM DATABASE FOR EMPLOYEE");
+        return jdbcTemplate.queryForObject(sql,new Object[]{empIdStatus.getEmp_id(),empIdStatus.getStatus()},new BeanPropertyRowMapper<>(Goal.class));
+    }
+
 }

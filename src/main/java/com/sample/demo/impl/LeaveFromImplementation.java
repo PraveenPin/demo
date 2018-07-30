@@ -1,6 +1,8 @@
 package com.sample.demo.impl;
 
+import com.sample.demo.model.EmpIdStatus;
 import com.sample.demo.model.Leave;
+import com.sample.demo.model.LeavesCount;
 import com.sample.demo.repository.LeaveFromInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -35,6 +37,12 @@ public class LeaveFromImplementation implements LeaveFromInterface {
         String sql = "select * from emp_performance.`leave` where emp_id=? and status=?";
         System.out.println("BEFORE GETTING FROM DATABASE , LEAVE FORM FOR EMPLOYEE");
         return jdbcTemplate.queryForObject(sql,new Object[]{emp_id,status},new BeanPropertyRowMapper<>(Leave.class));
+    }
+
+    @Override
+    public LeavesCount getLeavesCount(Integer emp_id) {
+        String sql = "select leave_type,sum(DateDiff(leave_to,leave_from)+1) as leaves_taken from emp_performance.`leave` where emp_id=? and status='approved' group by leave_type";
+        return jdbcTemplate.queryForObject(sql,new Object[]{emp_id},new BeanPropertyRowMapper<>(LeavesCount.class));
     }
 }
 
