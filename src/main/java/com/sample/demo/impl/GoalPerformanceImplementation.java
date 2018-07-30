@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class GoalPerformanceImplementation implements GoalPerformance {
     @Autowired
@@ -19,4 +21,9 @@ public class GoalPerformanceImplementation implements GoalPerformance {
         goal.getApproved_by(),goal.getStatus(),goal.getReview_start(),goal.getReview_end()});
         System.out.println("PERFORMANCE ADDED IN THE DATABASE");
     }
+
+//    @Override
+//    public List<Goal> getGoalForms(Integer emp_id) {
+//        return null;
+//    }
 }
