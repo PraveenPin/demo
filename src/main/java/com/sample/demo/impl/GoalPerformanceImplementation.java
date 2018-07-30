@@ -2,6 +2,7 @@ package com.sample.demo.impl;
 
 import com.sample.demo.model.EmpIdStatus;
 import com.sample.demo.model.Goal;
+import com.sample.demo.model.GoalApproval;
 import com.sample.demo.model.ManIdStatus;
 import com.sample.demo.repository.GoalPerformance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,14 @@ public class GoalPerformanceImplementation implements GoalPerformance {
         String sql = "select * from goal_performance where emp_id=? and status=?";
         System.out.println("BEFORE GETTING  EMP GOAL FORM FROM DATABASE FOR EMPLOYEE");
         return jdbcTemplate.queryForObject(sql,new Object[]{empIdStatus.getEmp_id(),empIdStatus.getStatus()},new BeanPropertyRowMapper<>(Goal.class));
+    }
+
+    @Override
+    public String updateByManager(GoalApproval goalApproval) {
+        String sql = "update goal_performance set verified_by=?,approved_by=?,status=? where emp_id=?";
+        jdbcTemplate.update(sql,new Object[]{goalApproval.getVerified_by(),goalApproval.getApproved_by(),goalApproval.getStatus(),
+        goalApproval.getEmp_id()});
+        return "Successfully updated";
     }
 
 }

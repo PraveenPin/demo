@@ -67,6 +67,11 @@ public class SignUpController {
         System.out.println("BEFORE RESPONSE OF LEAVES COUNT");
         return leaveFromImpelementaion.getLeavesCount(emp_id);
     }
+    @RequestMapping(value = "/approveLeave",method = RequestMethod.POST)
+    public String ApproveLeave(@RequestBody LeaveApproval leaveApproval){
+        System.out.println("BEFORE RESPONSE OF MANAGER LEAVE FORM UPDATE ");
+        return leaveFromImpelementaion.updateByManager(leaveApproval);
+    }
 
     @RequestMapping(value="/getLearnDevForms/{manager_id}",method = RequestMethod.GET)
     public List<LearnDev> getLDForms(@PathVariable Integer manager_id){
@@ -87,6 +92,11 @@ public class SignUpController {
     public Goal getEmpGoalForm(@RequestBody EmpIdStatus empIdStatus){
         System.out.println("BEFORE RESPONSE OF EMP GOAL FORM TO EMPLOYEE ");
         return goalPerformanceImplementation.getGoalEmpForm(empIdStatus);
+    }
+    @RequestMapping(value="/approveGoal",method = RequestMethod.POST)
+    public String ApproveGoal(@RequestBody GoalApproval goalApproval){
+        System.out.println("BEFORE RESPONSE OF MANAGER GOAL FORM UPDATE ");
+        return goalPerformanceImplementation.updateByManager(goalApproval);
     }
 //VACHINDAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 }

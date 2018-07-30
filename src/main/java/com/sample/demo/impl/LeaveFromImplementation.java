@@ -2,6 +2,7 @@ package com.sample.demo.impl;
 
 import com.sample.demo.model.EmpIdStatus;
 import com.sample.demo.model.Leave;
+import com.sample.demo.model.LeaveApproval;
 import com.sample.demo.model.LeavesCount;
 import com.sample.demo.repository.LeaveFromInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,14 @@ public class LeaveFromImplementation implements LeaveFromInterface {
     public LeavesCount getLeavesCount(Integer emp_id) {
         String sql = "select leave_type,sum(DateDiff(leave_to,leave_from)+1) as leaves_taken from emp_performance.`leave` where emp_id=? and status='approved' group by leave_type";
         return jdbcTemplate.queryForObject(sql,new Object[]{emp_id},new BeanPropertyRowMapper<>(LeavesCount.class));
+    }
+
+    @Override
+    public String updateByManager(LeaveApproval leaveApproval) {
+        String sql = "update emp_performance.`leave` set substitute_person=?,verified_by=?,approved_by=?,status=? where leave_id=?";
+        jdbcTemplate.update(sql,new Object[]{leaveApproval.getSubstitute_person(),leaveApproval.getVerified_by(),
+        leaveApproval.getApproved_by(),leaveApproval.getStatus(),leaveApproval.getLeave_id()});
+        return "Updated Succesfully";
     }
 }
 
