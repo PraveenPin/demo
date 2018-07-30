@@ -20,6 +20,7 @@ public class Goal {
     String status;
     String review_start;
     String review_end;
+    Integer goal_id;
 
     public Integer getEmp_id() {
         return emp_id;
@@ -172,4 +173,13 @@ public class Goal {
     public void setReview_end(String review_end) {
         this.review_end = review_end;
     }
+
+    public Integer getGoal_id() {
+        return goal_id;
+    }
+
+    public void setGoal_id(Integer goal_id) {
+        this.goal_id = goal_id;
+    }
+
 }

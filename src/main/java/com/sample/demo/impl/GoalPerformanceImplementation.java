@@ -42,9 +42,9 @@ public class GoalPerformanceImplementation implements GoalPerformance {
 
     @Override
     public String updateByManager(GoalApproval goalApproval) {
-        String sql = "update goal_performance set verified_by=?,approved_by=?,status=? where emp_id=?";
+        String sql = "update goal_performance set verified_by=?,approved_by=?,status=? where goal_id=?";
         jdbcTemplate.update(sql,new Object[]{goalApproval.getVerified_by(),goalApproval.getApproved_by(),goalApproval.getStatus(),
-        goalApproval.getEmp_id()});
+        goalApproval.getGoal_id()});
         return "Successfully updated";
     }
 

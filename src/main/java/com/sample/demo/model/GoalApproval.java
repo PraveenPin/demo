@@ -1,17 +1,17 @@
 package com.sample.demo.model;
 
 public class GoalApproval {
-    Integer emp_id;
+    Integer goal_id;
     String verified_by;
     String approved_by;
     String status;
 
-    public Integer getEmp_id() {
-        return emp_id;
+    public Integer getGoal_id() {
+        return goal_id;
     }
 
-    public void setEmp_id(Integer emp_id) {
-        this.emp_id = emp_id;
+    public void setGoal_id(Integer goal_id) {
+        this.goal_id = goal_id;
     }
 
     public String getVerified_by() {

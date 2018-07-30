@@ -19,8 +19,8 @@ public class LeaveFromImplementation implements LeaveFromInterface {
 
     @Override
     public void saveLeaveForm(Leave leave) {
-        String sql = "insert into emp_performance.`leave` values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        jdbcTemplate.update(sql,new Object[]{leave.getEmp_id(),leave.getLeave_id(),leave.getLeave_type(),leave.getLeave_from(),leave.getLeave_to(),
+        String sql = "INSERT INTO `emp_performance`.`leave` (`emp_id`, `leave_type`, `leave_from`, `leave_to`, `contact_no`, `date_applied`, `total_leaves`, `leaves_accumulated`, `leaves_consumed`, `leave_reason`, `substitute_person`, `verified_by`, `approved_by`, `status`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(sql,new Object[]{leave.getEmp_id(),leave.getLeave_type(),leave.getLeave_from(),leave.getLeave_to(),
                 leave.getContact_no(),leave.getDate_applied(),leave.getTotal_leaves(),leave.getLeaves_accumulated(),leave.getLeaves_consumed()
         ,leave.getLeave_reason(),leave.getSubstitute_person(),leave.getVerified_by(),leave.getApproved_by(),leave.getStatus()});
         System.out.println("Leave From into Database");
@@ -32,7 +32,7 @@ public class LeaveFromImplementation implements LeaveFromInterface {
         System.out.println("BEFORE GETTING FROM DATABASE , LEAVE FORMS FOR MANAGER");
         return jdbcTemplate.query(sql,new Object[]{status,manager_id},new BeanPropertyRowMapper<>(Leave.class));
     }
-
+//    INSERT INTO `emp_performance`.`leave` (`emp_id`, `leave_type`, `leave_from`, `leave_to`, `contact_no`, `date_applied`, `total_leaves`, `leaves_accumulated`, `leaves_consumed`, `leave_reason`, `substitute_person`, `verified_by`, `approved_by`, `status`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?);
     @Override
     public Leave getLeaveEmpData(Integer emp_id, String status) {
         String sql = "select * from emp_performance.`leave` where emp_id=? and status=?";
