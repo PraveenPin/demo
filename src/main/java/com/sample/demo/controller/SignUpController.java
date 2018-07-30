@@ -71,15 +71,5 @@ public class SignUpController {
         System.out.println("BEFORE RESPONSE OF EMP LD FORM ");
         return learnDevImplementation.getLearnDetails(emp_id);
     }
-//    @RequestMapping(value="/signUpSample")
-//    public ModelAndView signUpSample() {
-//        ModelAndView mv = new ModelAndView();
-//        mv.setViewName("homePage");
-//        mv.addObject("message","welcome !");
-//        FirstTab firstTab=new FirstTab() ;
-//        firstTab.setId(5);
-//        firstTab.setName("hell");
-//        return mv;
-//    }
-//
+//VACHINDAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 }
