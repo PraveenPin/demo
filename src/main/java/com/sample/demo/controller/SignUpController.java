@@ -37,6 +37,7 @@ public class SignUpController {
 
     @RequestMapping(value="/leaveForm",method = RequestMethod.POST)
     public String fillLeaveForm(@RequestBody Leave leave){
+        System.out.println("Received Data");
         leaveFromImpelementaion.saveLeaveForm(leave);
         return "LEAVE FORM ADDED IN THE DATABASE";
     }
@@ -63,7 +64,7 @@ public class SignUpController {
         return leaveFromImpelementaion.getLeaveEmpData(empIdStatus.getEmp_id(),empIdStatus.getStatus());
     }
     @RequestMapping(value="/getLeavesTaken/{emp_id}",method = RequestMethod.GET)
-    public LeavesCount getLeavesTaken(@PathVariable Integer emp_id){
+    public List<LeavesCount> getLeavesTaken(@PathVariable Integer emp_id){
         System.out.println("BEFORE RESPONSE OF LEAVES COUNT");
         return leaveFromImpelementaion.getLeavesCount(emp_id);
     }

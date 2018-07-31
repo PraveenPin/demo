@@ -13,6 +13,6 @@ public interface LeaveFromInterface {
      void saveLeaveForm(Leave leave);
      List<Leave> getLeaveDetails(Integer manager_id,String status);
      Leave getLeaveEmpData(Integer emp_id,String status);
-     LeavesCount getLeavesCount(Integer emp_id);
+     List<LeavesCount> getLeavesCount(Integer emp_id);
      String updateByManager(LeaveApproval leaveApproval);
 }
