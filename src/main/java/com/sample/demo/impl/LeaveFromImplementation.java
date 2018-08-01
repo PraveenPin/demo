@@ -16,11 +16,10 @@ import java.util.List;
 public class LeaveFromImplementation implements LeaveFromInterface {
     @Autowired
     JdbcTemplate jdbcTemplate;
-
     @Override
     public void saveLeaveForm(Leave leave) {
-        String sql = "insert into emp_performance.`leave` values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        jdbcTemplate.update(sql,new Object[]{leave.getEmp_id(),leave.getLeave_id(),leave.getLeave_type(),leave.getLeave_from(),leave.getLeave_to(),
+        String sql = "insert into `leave` (`emp_id`,`leave_type`,`leave_from`,`leave_to`,`contact_no`,`date_applied`,`total_leaves`,`leaves_accumulated`,`leaves_consumed`,`leave_reason`,`substitute_person`,`verified_by`,`approved_by`,`status`) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        jdbcTemplate.update(sql,new Object[]{leave.getEmp_id(),leave.getLeave_type(),leave.getLeave_from(),leave.getLeave_to(),
                 leave.getContact_no(),leave.getDate_applied(),leave.getTotal_leaves(),leave.getLeaves_accumulated(),leave.getLeaves_consumed()
         ,leave.getLeave_reason(),leave.getSubstitute_person(),leave.getVerified_by(),leave.getApproved_by(),leave.getStatus()});
         System.out.println("Leave From into Database");

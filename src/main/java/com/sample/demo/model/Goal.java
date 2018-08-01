@@ -10,6 +10,7 @@ public class Goal {
     float kra3_weightage;
     String kra4;
     float kra4_weightage;
+
     String kra5;
     float kra5_weightage;
     String kra6;
