@@ -26,12 +26,13 @@ public class SignUpController {
     @RequestMapping(value="/signUp",method = RequestMethod.POST)
     public String signUp(@RequestBody User user) {
         signUpImplementation.saveData(user);
-        return "ADDED IN THE DATABASE!";
+        return "success";
     }
 
     @RequestMapping(value="/login")
     public Response isValidUser(@RequestBody Login login){
         Response response = loginValidate.isValidUser(login);
+        System.out.println("LOGIN DONE");
         return response;
     }
 

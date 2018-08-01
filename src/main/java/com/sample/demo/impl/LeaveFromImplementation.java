@@ -20,8 +20,6 @@ public class LeaveFromImplementation implements LeaveFromInterface {
     @Override
     public void saveLeaveForm(Leave leave) {
         String sql = "insert into emp_performance.`leave` values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-//        String max_leave_id_sql = "select max(leave_id) as max_leave_id from emp_performance.`leave`";
-//        Integer max_leave_id = jdbcTemplate.queryForObject(max_leave_id_sql,new BeanPropertyRowMapper<>(Integer.class));
         jdbcTemplate.update(sql,new Object[]{leave.getEmp_id(),leave.getLeave_id(),leave.getLeave_type(),leave.getLeave_from(),leave.getLeave_to(),
                 leave.getContact_no(),leave.getDate_applied(),leave.getTotal_leaves(),leave.getLeaves_accumulated(),leave.getLeaves_consumed()
         ,leave.getLeave_reason(),leave.getSubstitute_person(),leave.getVerified_by(),leave.getApproved_by(),leave.getStatus()});
