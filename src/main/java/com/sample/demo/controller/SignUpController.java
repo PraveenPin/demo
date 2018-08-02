@@ -35,7 +35,11 @@ public class SignUpController {
         System.out.println("LOGIN DONE");
         return response;
     }
+    @RequestMapping(value="/getEmpInfo/{emp_id}",method = RequestMethod.GET)
+    public MasterModel getEmpInfo(@PathVariable Integer emp_id){
 
+        return loginValidate.getEmpInfo(emp_id);
+    }
     @RequestMapping(value="/leaveForm",method = RequestMethod.POST)
     public String fillLeaveForm(@RequestBody Leave leave){
         System.out.println("Received Data");
@@ -60,10 +64,16 @@ public class SignUpController {
         return leaveFromImpelementaion.getLeaveDetails(manIdStatus.getManager_id(),manIdStatus.getStatus());
     }
     @RequestMapping(value="/getLeaveEmpForm",method=RequestMethod.POST)
-    public Leave getLeaveEmpForm(@RequestBody EmpIdStatus empIdStatus){
+    public List<Leave> getLeaveEmpForm(@RequestBody EmpIdStatus empIdStatus){
         System.out.println("BEFORE RESPONSE OF EMPLOYEE LEAVE FORM ");
         return leaveFromImpelementaion.getLeaveEmpData(empIdStatus.getEmp_id(),empIdStatus.getStatus());
     }
+    @RequestMapping(value="/getEmpLeaves/{emp_id}",method=RequestMethod.GET)
+    public List<Leave> getEmpLeave(@PathVariable Integer emp_id){
+        System.out.println("BEFORE RESPONSE OF EMPLOYEE LEAVE FORM ");
+        return leaveFromImpelementaion.getEmpLeaves(emp_id);
+    }
+
     @RequestMapping(value="/getLeavesTaken/{emp_id}",method = RequestMethod.GET)
     public List<LeavesCount> getLeavesTaken(@PathVariable Integer emp_id){
         System.out.println("BEFORE RESPONSE OF LEAVES COUNT");
